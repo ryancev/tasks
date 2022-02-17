@@ -119,7 +119,26 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    if (colors.length === 0) {
+        return true;
+    } else {
+        const nonRGB = colors.filter((color: string): boolean => {
+            if (
+                color.toLowerCase() === "red" ||
+                color.toLowerCase() === "green" ||
+                color.toLowerCase() === "blue"
+            ) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+        if (nonRGB.length > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
 /**
