@@ -149,7 +149,17 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    if (addends.length === 0) {
+        return "0=0";
+    } else {
+        const arrSum = addends.reduce(
+            (currentTotal: number, num: number): number => {
+                return currentTotal + num;
+            },
+            0
+        );
+        return `${arrSum}=${addends.join("+")}`;
+    }
 }
 
 /**
