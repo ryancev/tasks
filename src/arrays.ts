@@ -172,5 +172,29 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    const anyNegatives = values.some((val: number): boolean => val < 0);
+    if (anyNegatives) {
+        const valCopy = [...values];
+        const negativeIndex = values.findIndex(
+            (val: number): boolean => val < 0
+        );
+        const negVal = valCopy[negativeIndex];
+        const valUntilNeg = valCopy.slice(0, negativeIndex);
+        const valAfterNeg = valCopy.slice(negativeIndex + 1, valCopy.length);
+        const arrSum = valUntilNeg.reduce(
+            (currentTotal: number, num: number): number => {
+                return currentTotal + num;
+            },
+            0
+        );
+        return [...valUntilNeg, negVal, arrSum, ...valAfterNeg];
+    } else {
+        const arrSum = values.reduce(
+            (currentTotal: number, num: number): number => {
+                return currentTotal + num;
+            },
+            0
+        );
+        return [...values, arrSum];
+    }
 }
