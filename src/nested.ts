@@ -24,7 +24,20 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return [];
+    const nonEmptyQuestions = questions.filter(
+        (question: Question): boolean => {
+            if (question.body !== "" || question.expected !== "") {
+                if (question.type === "short_answer_question") {
+                    return question.options.length === 0;
+                } else {
+                    return question.options.length > 0;
+                }
+            } else {
+                return false;
+            }
+        }
+    );
+    return nonEmptyQuestions;
 }
 
 /***
