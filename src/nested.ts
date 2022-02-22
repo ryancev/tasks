@@ -269,7 +269,23 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ) {
-    return [];
+    const editedQuestions = questions.map((question: Question): Question => {
+        if (question.id === targetId) {
+            if (targetOptionIndex === -1) {
+                return {
+                    ...question,
+                    options: [...question.options, newOption]
+                };
+            } else {
+                const questionArr = [...question.options];
+                questionArr[targetOptionIndex] = newOption;
+                return { ...question, options: questionArr };
+            }
+        } else {
+            return question;
+        }
+    });
+    return editedQuestions;
 }
 
 /***
