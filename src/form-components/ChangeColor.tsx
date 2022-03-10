@@ -6,15 +6,19 @@ interface Color {
     colorCode: string;
 }
 
+/**
+ * I originally had colorCode as hex color codes and it worked great - but it failed unit tests because
+ * they were checking for the value - that's why there is redundancy.
+ */
 const COLORS: Color[] = [
-    { colorName: "Lavender", colorCode: "#D8A6FF" },
-    { colorName: "Pink", colorCode: "#FFA6FA" },
-    { colorName: "Peach", colorCode: "#fee4e4" },
-    { colorName: "Yellow", colorCode: "#FAFFA6" },
-    { colorName: "Blue", colorCode: "#A6B2FF" },
-    { colorName: "Beige", colorCode: "#FFCBA6" },
-    { colorName: "Shamrock", colorCode: "#A7FFA6" },
-    { colorName: "Teal", colorCode: "#A6FFE2" }
+    { colorName: "DodgerBlue", colorCode: "DodgerBlue" },
+    { colorName: "LightCoral", colorCode: "LightCoral" },
+    { colorName: "PeachPuff", colorCode: "PeachPuff" },
+    { colorName: "LightSalmon", colorCode: "LightSalmon" },
+    { colorName: "LightSkyBlue", colorCode: "LightSkyBlue" },
+    { colorName: "Coral", colorCode: "Coral" },
+    { colorName: "LightGreen", colorCode: "LightGreen" },
+    { colorName: "LightSteelBlue", colorCode: "LightSteelBlue" }
 ];
 
 const lookupColor: Record<string, Color> = Object.fromEntries(
@@ -22,7 +26,7 @@ const lookupColor: Record<string, Color> = Object.fromEntries(
 );
 
 export function ChangeColor(): JSX.Element {
-    const [currColor, setColor] = useState<Color>(lookupColor["Lavender"]);
+    const [currColor, setColor] = useState<Color>(lookupColor["DodgerBlue"]);
 
     function updateColor(event: React.ChangeEvent<HTMLInputElement>) {
         setColor(lookupColor[event.target.value]);
@@ -60,7 +64,7 @@ export function ChangeColor(): JSX.Element {
                 <span
                     data-testid="colored-box"
                     style={{
-                        backgroundColor: currColor.colorCode,
+                        backgroundColor: currColor.colorName,
                         padding: "5px"
                     }}
                 >
