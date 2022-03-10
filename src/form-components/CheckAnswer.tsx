@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 
 type ChangeEvent = React.ChangeEvent<
     HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
@@ -19,14 +19,24 @@ export function CheckAnswer({
     return (
         <div>
             <h3>Check Answer</h3>
-            <Form.Group controlId="formUserAnswer">
-                <Form.Label>Answer:</Form.Label>
-                <Form.Control
-                    value={userAnswer}
-                    onChange={updateAnswer}
-                ></Form.Control>
+            <Form.Group
+                controlId="formUserAnswer"
+                as={Row}
+                style={{ justifyContent: "center", margin: "20px" }}
+            >
+                <Form.Label column sm={2}>
+                    Answer:
+                </Form.Label>
+                <Col sm={2}>
+                    <Form.Control
+                        value={userAnswer}
+                        onChange={updateAnswer}
+                    ></Form.Control>
+                </Col>
             </Form.Group>
-            <div>{userAnswer === expectedAnswer ? "✔️" : "❌"}</div>
+            <div style={{ margin: "20px" }}>
+                {userAnswer === expectedAnswer ? "✔️" : "❌"}
+            </div>
         </div>
     );
 }
