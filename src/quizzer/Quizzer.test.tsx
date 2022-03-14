@@ -9,5 +9,7 @@ describe("Quizzer Tests", () => {
     test("The Quizzer renders", () => {
         // Up to you to decide what your tests are!
         // Add more tests, more components, more test files!
+        render(<Quizzer></Quizzer>);
+        expect(screen.queryByText(/Quizer/i)).toBeInTheDocument;
     });
 });
